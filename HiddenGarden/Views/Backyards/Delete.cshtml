@@ -11,4 +11,6 @@
   <input type="submit" value="Delete" class="btn btn-primary"/>
 }
 
-@Html.ActionLink("Back to details", "Details", new { id = @Model.BackyardId})
+<div id="navlinks">
+<p>@Html.ActionLink("Back to details", "Details", new { id = @Model.BackyardId})</p>
+</div>

@@ -8,6 +8,6 @@
 <p>Location: @Model.Address</p>
 <p>Instructions: @Model.Instructions</p>
 
-<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.BackyardId })</p>
-<p>@Html.ActionLink("Delete backyard", "Delete", new { id = @Model.BackyardId })</p>
-<p>@Html.ActionLink("Return to all backyards", "Index")</p>
+<div id="navlinks">
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.BackyardId }) | @Html.ActionLink("Delete backyard", "Delete", new { id = @Model.BackyardId }) | @Html.ActionLink("Return to all backyards", "Index")</p>
+</div>

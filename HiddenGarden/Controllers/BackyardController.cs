@@ -6,16 +6,18 @@ namespace HiddenGarden.Controllers;
 
 public class BackyardsController : Controller
 {
+  private readonly ILogger<HomeController> _logger;
   public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
   {
     Backyard backyard = new Backyard();
     List<Backyard> backyardList = new List<Backyard> { };
     using (var httpClient = new HttpClient())
     {
-      using (var response = await httpClient.GetAsync($"https://localhost:5001/api/Backyards?page={page}"))
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={page}"))
       {
-        var backyardContent = await response.Content.ReadAsStringAsync();
-        JArray backyardArray = JArray.Parse(backyardContent);
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        JObject jsonResponse = JObject.Parse(apiResponse);
+        JArray backyardArray = (JArray)jsonResponse["data"];
         backyardList = backyardArray.ToObject<List<Backyard>>();
       }
     }
@@ -27,9 +29,20 @@ public class BackyardsController : Controller
     return View(backyardList);
   }
 
-  public IActionResult Details(int id)
+  public async Task<IActionResult> Details(int id)
   {
-    Backyard backyard = Backyard.GetDetails(id);
+    List<Backyard> BackyardList = new List<Backyard> { };
+    using (var httpClient = new HttpClient())
+    {
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?id={id}"))
+      {
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        JObject jsonResponse = JObject.Parse(apiResponse);
+        JArray backyardArray = (JArray)jsonResponse["data"];
+        BackyardList = backyardArray.ToObject<List<Backyard>>();
+      }
+    }
+    Backyard backyard = BackyardList[0];
     return View(backyard);
   }
 
@@ -45,9 +58,20 @@ public class BackyardsController : Controller
     return RedirectToAction("Index");
   }
 
-  public ActionResult Edit(int id)
+  public async Task<IActionResult> Edit(int id)
   {
-    Backyard backyard = Backyard.GetDetails(id);
+    List<Backyard> BackyardList = new List<Backyard> { };
+    using (var httpClient = new HttpClient())
+    {
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?id={id}"))
+      {
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        JObject jsonResponse = JObject.Parse(apiResponse);
+        JArray backyardArray = (JArray)jsonResponse["data"];
+        BackyardList = backyardArray.ToObject<List<Backyard>>();
+      }
+    }
+    Backyard backyard = BackyardList[0];
     return View(backyard);
   }
 

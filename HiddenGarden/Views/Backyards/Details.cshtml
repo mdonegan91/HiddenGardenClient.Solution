@@ -1,0 +1,13 @@
+@{
+  ViewData["Title"] = $"Details for {Model.BackyardName}";
+}
+
+<h1>All About @Model.BackyardName</h1>
+
+<p>Description: @Model.Description</p>
+<p>Location: @Model.Location</p>
+<p>Instructions: @Model.Instructions</p>
+
+<p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.BackyardId })</p>
+<p>@Html.ActionLink("Delete backyard", "Delete", new { id = @Model.BackyardId })</p>
+<p>@Html.ActionLink("Return to all backyards", "Index")</p>

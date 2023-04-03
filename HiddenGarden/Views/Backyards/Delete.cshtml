@@ -1,0 +1,14 @@
+@{
+  ViewData["Title"] = $"Delete {Model.BackyardName}";
+}
+
+@model HiddenGarden.Models.Backyard
+
+<h4>Are you sure you want to remove @Model.BackyardName?</h4>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" class="btn btn-primary"/>
+}
+
+@Html.ActionLink("Back to details", "Details", new { id = @Model.BackyardId})

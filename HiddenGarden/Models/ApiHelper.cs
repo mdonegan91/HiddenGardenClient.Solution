@@ -1,6 +1,6 @@
 using RestSharp;
 
-namespace HiddenGardenClient.Models
+namespace HiddenGarden.Models
 {
   public class ApiHelper
   {

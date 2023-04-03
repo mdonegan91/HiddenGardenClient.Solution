@@ -1,0 +1,29 @@
+@{
+  ViewData["Title"] = $"Edit {Model.BackyardName}";
+}
+
+@model HiddenGarden.Models.Backyard
+
+<h4>Edit @Model.BackyardName</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.BackyardId)
+  @Html.LabelFor(model => model.BackyardName)
+  @Html.TextBoxFor(model => model.BackyardName, new { @Value = Model.BackyardName})
+  <br>
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description, new { @Value = Model.Description})
+  <br>
+  @Html.LabelFor(model => model.Location)
+  @Html.TextBoxFor(model => model.Location, new { Value = Model.Location})
+  <br>
+  @Html.LabelFor(model => model.Instructions)
+  @Html.TextBoxFor(model => model.Instructions, new { Value = Model.Instructions})
+  <br>
+  <br>
+  <input type="submit" value="Edit backyard" class="btn btn-primary"/>
+}
+
+<br>
+<p>@Html.ActionLink("Back to details", "Details", new {id = @Model.BackyardId})</p>

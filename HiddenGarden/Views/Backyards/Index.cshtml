@@ -1,0 +1,46 @@
+@{
+ViewData["Title"] = "Backyards";
+int pageSize = 6;
+int currentPage = ViewBag.CurrentPage;
+int startIndex = (currentPage - 1) * pageSize;
+int endIndex = Math.Min(startIndex + pageSize, Model.Count);
+List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex);
+}
+
+<h1>All Backyards</h1>
+<h3>Actions:</h3>
+<p>@Html.ActionLink("Add a new backyard", "Create")</p>
+<div class="row">
+    @foreach (Backyard backyard in backyards)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@backyard.BackyardName</h5>
+                    <p class="card-text">@backyard.Description</p>
+                    <a href="/Backyards/Details/@(backyard.BackyardId)" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="col">
+        <ul class="pagination">
+            @if (currentPage > 1)
+            {
+                <a href="/Backyards?page=@(currentPage - 1)&pageSize=@pageSize"><button class="btn btn-primary">Prev</button></a>
+            }
+            @for (int i = 1; i <= Math.Ceiling((double)Model.Count / ViewBag.pageSize); i++)
+            {
+                <li class="page-item @(currentPage == i ? "active" : "")">
+                    <a class="btn btn-primary" href="/Backyards?page=@i&pageSize=@pageSize">@i</a>
+                </li>
+            }
+            @if (currentPage < Math.Ceiling((double)Model.Count / pageSize))
+            {
+                <a href="/Backyards?page=@(currentPage + 1)&pageSize=@pageSize"><button class="btn btn-primary">Next</button></a>
+            }
+        </ul>
+    </div>
+</div>

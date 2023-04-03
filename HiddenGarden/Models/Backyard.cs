@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HiddenGardenClient.Models
+namespace HiddenGarden.Models
 {
   public class Backyard
   {

@@ -1,0 +1,28 @@
+@{
+  ViewData["Title"] = "Add a Backyard";
+}
+
+@model HiddenGarden.Models.Backyard
+
+<h4>Add a new backyard to the community</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.BackyardName)
+  @Html.TextBoxFor(model => model.BackyardName)
+  <br>
+  @Html.LabelFor(model => model.Description)
+  @Html.TextBoxFor(model => model.Description)
+  <br>
+  @Html.LabelFor(model => model.Location)
+  @Html.TextBoxFor(model => model.Location)
+  <br>
+  @Html.LabelFor(model => model.Instructions)
+  @Html.TextBoxFor(model => model.Instructions)
+  <br>
+  <br>
+  <input type="submit" value="Add new backyard" class="btn btn-primary"/>
+}
+
+<br>
+<p>@Html.ActionLink("Back to all backyards", "Index")</p>

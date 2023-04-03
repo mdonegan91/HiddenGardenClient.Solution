@@ -1,6 +1,6 @@
-namespace HiddenGardenClient.Models;
+namespace HiddenGarden.Models;
 
-    public class FruitTreeResponse
+    public class BackyardResponse
     {
         public List<Backyard> Backyards { get; set; } = new List<Backyard>();
         public int Pages { get; set; }

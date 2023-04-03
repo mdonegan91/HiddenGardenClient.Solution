@@ -6,7 +6,7 @@ namespace HiddenGarden.Controllers;
 
 public class BackyardsController : Controller
 {
-  private readonly ILogger<HomeController> _logger;
+  // private readonly ILogger<HomeController> _logger;
   public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
   {
     Backyard backyard = new Backyard();
@@ -95,3 +95,5 @@ public class BackyardsController : Controller
     return RedirectToAction("Index");
   }
 }
+
+// https://www.google.com/maps/place/13704+SE+Salmon+St,+Portland,+OR+97233/

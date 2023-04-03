@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using HiddenGarden.Models;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HiddenGarden.Controllers;
 
+[Authorize]
 public class BackyardsController : Controller
 {
   // private readonly ILogger<HomeController> _logger;

@@ -1,6 +1,6 @@
 ## 🌲🏞️ Parks Directory 🏞️🌲
 
-#### By Sarah Andyshak
+#### By Molly Donegan, Sarah Andyshak, Erin Timlin, David Jandron, Kai Clausen, Asia Kaplanyan
 
 #### An API for finding national and state parks, monuments, and forests.
 
@@ -177,4 +177,4 @@ Enjoy the API! If you have questions or suggestions for fixing the code, please 
 
 [MIT](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)
 
-Copyright (c) 2023 Sarah Andyshak
+Copyright (c) 2023 Molly Donegan, Sarah Andyshak, Erin Timlin, David Jandron, Kai Clausen, Asia Kaplanyan

@@ -1,11 +1,11 @@
 @{
-  ViewData["Title"] = $"Details for {Model.BackyardName}";
+  ViewData["Title"] = $"Details for {Model.Service}";
 }
 
-<h1>All About @Model.BackyardName</h1>
+<h1>All About @Model.Service</h1>
 
 <p>Description: @Model.Description</p>
-<p>Location: @Model.Location</p>
+<p>Location: @Model.Address</p>
 <p>Instructions: @Model.Instructions</p>
 
 <p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.BackyardId })</p>

@@ -6,9 +6,9 @@ namespace HiddenGarden.Models
   public class Backyard
   {
     public int BackyardId { get; set; }
-    public string BackyardName { get; set; }
+    public string Service { get; set; }
     public string Description { get; set; }
-    public string Location { get; set; }
+    public string Address { get; set; }
     public string Instructions { get; set; }
 
     public static Backyard[] GetBackyards()

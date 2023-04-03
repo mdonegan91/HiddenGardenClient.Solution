@@ -16,7 +16,7 @@ List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex);
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">@backyard.BackyardName</h5>
+                    <h5 class="card-title">@backyard.Service</h5>
                     <p class="card-text">@backyard.Description</p>
                     <a href="/Backyards/Details/@(backyard.BackyardId)" class="btn btn-primary">Details</a>
                 </div>

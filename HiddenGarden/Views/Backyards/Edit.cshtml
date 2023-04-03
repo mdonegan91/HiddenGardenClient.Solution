@@ -1,22 +1,22 @@
 @{
-  ViewData["Title"] = $"Edit {Model.BackyardName}";
+  ViewData["Title"] = $"Edit {Model.Service}";
 }
 
 @model HiddenGarden.Models.Backyard
 
-<h4>Edit @Model.BackyardName</h4>
+<h4>Edit @Model.Service</h4>
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.BackyardId)
-  @Html.LabelFor(model => model.BackyardName)
-  @Html.TextBoxFor(model => model.BackyardName, new { @Value = Model.BackyardName})
+  @Html.LabelFor(model => model.Service)
+  @Html.TextBoxFor(model => model.Service, new { @Value = Model.Service})
   <br>
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description, new { @Value = Model.Description})
   <br>
-  @Html.LabelFor(model => model.Location)
-  @Html.TextBoxFor(model => model.Location, new { Value = Model.Location})
+  @Html.LabelFor(model => model.Address)
+  @Html.TextBoxFor(model => model.Address, new { Value = Model.Address})
   <br>
   @Html.LabelFor(model => model.Instructions)
   @Html.TextBoxFor(model => model.Instructions, new { Value = Model.Instructions})

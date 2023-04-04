@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,17 +13,28 @@ namespace HiddenGarden.Models
     public string Address { get; set; }
     public string Instructions { get; set; }
 
-    public static Backyard[] GetBackyards()
-    {
-      Task<string> apiCallTask = ApiHelper.GetAll();
-      string result =  apiCallTask.Result;
+    // public static Backyard[] GetBackyards()
+    // {
+    //   Task<string> apiCallTask = ApiHelper.GetAll();
+    //   string result =  apiCallTask.Result;
       
-      JArray jsonResponse = JArray.Parse(result);
+    //   JArray jsonResponse = JArray.Parse(result);
+    //   List<Backyard> backyardList = JsonConvert.DeserializeObject<List<Backyard>>(jsonResponse.ToString());
+
+    //   return backyardList.ToArray();
+    // }
+
+
+    public static List<Backyard> GetBackyards()
+    {
+      var apiCallTask = ApiHelper.GetAll();
+      var result = apiCallTask.Result;
+
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
       List<Backyard> backyardList = JsonConvert.DeserializeObject<List<Backyard>>(jsonResponse.ToString());
 
-      return backyardList.ToArray();
+      return backyardList;
     }
-
     public static Backyard GetDetails(int id)
     {
       var apiCallTask = ApiHelper.Get(id);

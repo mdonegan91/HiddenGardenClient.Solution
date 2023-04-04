@@ -3,6 +3,7 @@ using HiddenGarden.Models;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace HiddenGarden.Controllers;
 
@@ -97,6 +98,31 @@ public class BackyardsController : Controller
     Backyard.Delete(id);
     return RedirectToAction("Index");
   }
+
+
+  [HttpPost, ActionName("Search")]
+  public async Task<IActionResult> Search(string name)
+  {
+    List<Backyard> BackyardList = new List<Backyard> { };
+    using (var httpClient = new HttpClient())
+    {
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?PageSize=1001"))
+      {
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        JObject jsonResponse = JObject.Parse(apiResponse);
+        JArray backyardArray = (JArray)jsonResponse["data"];
+        BackyardList = backyardArray.ToObject<List<Backyard>>();
+      }
+    }
+    List<Backyard> result = new List<Backyard> { };
+    foreach(Backyard backyard in BackyardList)
+    {
+      if (backyard.Description.ToLower().Contains(name.ToLower()))
+      {
+        result.Add(backyard);
+      }
+    }
+    return View(result);
+  }
 }
 
-// https://www.google.com/maps/place/13704+SE+Salmon+St,+Portland,+OR+97233/

@@ -12,6 +12,7 @@ namespace HiddenGarden.Models
     public string Description { get; set; }
     public string Address { get; set; }
     public string Instructions { get; set; }
+    public string UserId { get; set; }
 
     // public static Backyard[] GetBackyards()
     // {

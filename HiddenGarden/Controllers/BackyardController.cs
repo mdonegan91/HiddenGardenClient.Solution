@@ -4,14 +4,28 @@ using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace HiddenGarden.Controllers;
 
 [Authorize]
 public class BackyardsController : Controller
 {
+  private readonly HiddenGardenContext _db;
+  private readonly UserManager<ApplicationUser> _userManager;
+  public BackyardsController(UserManager<ApplicationUser> userManager, HiddenGardenContext db)
+  {
+    _userManager = userManager;
+    _db = db;
+  }
+
   // private readonly ILogger<HomeController> _logger;
-  public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
+  public async Task<IActionResult> Index( int page = 1, int pageSize = 6)
   {
     Backyard backyard = new Backyard();
     List<Backyard> backyardList = new List<Backyard> { };
@@ -53,12 +67,10 @@ public class BackyardsController : Controller
         totalBackyards = backyardArray.ToObject<List<Backyard>>();
       }
     }
-    
-
     ViewBag.TotalPages = (totalBackyards.Count() / 6);
     ViewBag.CurrentPage = page;
     ViewBag.PageSize = pageSize;
-
+    
     return View(backyardList);
   }
 
@@ -85,8 +97,11 @@ public class BackyardsController : Controller
   }
 
   [HttpPost]
-  public ActionResult Create(Backyard backyard)
+  public async Task<IActionResult> Create(Backyard backyard)
   {
+    string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+    backyard.UserId = userId;
     Backyard.Post(backyard);
     return RedirectToAction("Index");
   }
@@ -132,6 +147,10 @@ public class BackyardsController : Controller
   [HttpPost, ActionName("Search")]
   public async Task<IActionResult> Search(string name)
   {
+    if(name == null)
+    {
+      return RedirectToAction("Index");
+    }
     List<Backyard> BackyardList = new List<Backyard> { };
     using (var httpClient = new HttpClient())
     {
@@ -151,6 +170,7 @@ public class BackyardsController : Controller
         result.Add(backyard);
       }
     }
+    ViewBag.SearchResults = name;
     return View(result);
   }
 }

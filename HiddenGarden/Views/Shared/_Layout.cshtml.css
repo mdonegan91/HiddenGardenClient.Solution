@@ -47,6 +47,31 @@ button.accept-policy {
   line-height: 60px;
 }
 
-div#navlinks {
-  text-align: center;
+.btn-primary {
+  color: #fff;
+  background-color: #72A276;
+  border-color: #72A276;
+  margin: 5px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #86CD82;
+  border-color: #86CD82;
+  margin: 5px;
+}
+
+ul li:last-child {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 15px;
+  padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 50px;
+    padding: 10px 0px;
+    position: relative;
 }

@@ -16,3 +16,30 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #72A276;
+  border-color: #72A276;
+  margin: 5px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #86CD82;
+  border-color: #86CD82;
+  margin: 5px;
+}
+
+a {
+  color: #72A276;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #86CD82;
+}
+
+div#navlinks {
+  text-align: left;
+}

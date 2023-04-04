@@ -1,17 +1,21 @@
 @{
-ViewData["Title"] = "Backyards";
-int pageSize = 6;
+  ViewData["Title"] = "Backyards";
+@* int pageSize = 6;
 int currentPage = ViewBag.CurrentPage;
 int startIndex = (currentPage - 1) * pageSize;
 int endIndex = Math.Min(startIndex + pageSize, Model.Count);
-List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex);
+List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex); *@
 }
+
+@using HiddenGarden.Models;
+
+
 
 <h1>All Backyards</h1>
 <h3>Actions:</h3>
 <p>@Html.ActionLink("Add a new backyard", "Create")</p>
 <div class="row">
-    @foreach (Backyard backyard in backyards)
+    @foreach (Backyard backyard in Model)
     {
         <div class="col-md-4">
             <div class="card mb-4">
@@ -24,51 +28,36 @@ List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex);
         </div>
     }
 </div>
+
+
 <div class="row">
     <div class="col">
         <ul class="pagination">
-            @if (currentPage > 1)
-            {
-                <a href="/Backyards?page=@(currentPage - 1)&pageSize=@pageSize"><button class="btn btn-primary">Prev</button></a>
-            }
-            @for (int i = 1; i <= Math.Ceiling((double)Model.Count / ViewBag.pageSize); i++)
-            {
-                <li class="page-item @(currentPage == i ? "active" : "")">
-                    <a class="btn btn-primary" href="/Backyards?page=@i&pageSize=@pageSize">@i</a>
-                </li>
-            }
-            @if (currentPage < Math.Ceiling((double)Model.Count / pageSize))
-            {
-                <a href="/Backyards?page=@(currentPage + 1)&pageSize=@pageSize"><button class="btn btn-primary">Next</button></a>
-            }
-        </ul>
-    </div>
+  @if(ViewBag.CurrentPage > 1){
+    <a href='/Backyards?page=@(ViewBag.CurrentPage - 1)&pageSize=@ViewBag.PageSize'>
+            <button class="btn btn-primary">Prev</button>
+        </a>
+  }
+  @if(Model.Count == 6 && ViewBag.IsEnd != 1)
+  {
+    <a href='/Backyards?page=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize'>
+            <button class="btn btn-primary">Next</button>
+        </a>
+  }
+  </ul>
+  </div>
 </div>
-<div class="btn btn-primary">
-    @if (ViewBag.CurrentPage > 1) {
-        <a href='/?page=@(ViewBag.CurrentPage - 1)&pageSize=@ViewBag.PageSize'>
-            <button>Prev</button>
-        </a>
-    }
-    @for (var i = (ViewBag.CurrentPage > 3 ? ViewBag.CurrentPage - 3 : 1); i < (ViewBag.CurrentPage <= ((ViewBag.LastId / ViewBag.PageSize) -2) ? ViewBag.CurrentPage + 4 : ((ViewBag.LastId / ViewBag.PageSize) + 2)); i++) {
-        @if (i == ViewBag.CurrentPage) {
-            <div class="current-page">@(i)</div>
-        } else {
-            <a class="page-link" href="/?page=@(i)&pageSize=@ViewBag.PageSize">@(i)</a>
-        }
-    }
-    @if (ViewBag.CurrentPage < ((ViewBag.LastId / ViewBag.PageSize) + 1))
-    {
-        <a href='/?page=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize'>
-            <button>Next</button>
-        </a>
-    }
 
+<br>
+<hr>
+
+<div class="">
+  
   @using (Html.BeginForm("Search", "Backyards")) {
   <label class="mdl-textfield__label" for="sample3">Search Backyards By Description:</label>
   <br>
   <input class="mdl-textfield__input" type="text" name="name" id="sample3"><br><br>
-  <input type="submit" name = "name" value="Search"/>
+  <input type="submit" class = "btn btn-primary" name = "name" value="Search"/>
   }
 
 </div>

@@ -17,7 +17,7 @@ public class BackyardsController : Controller
     List<Backyard> backyardList = new List<Backyard> { };
     using (var httpClient = new HttpClient())
     {
-      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={page}"))
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={page}&pageSize={pageSize}"))
       {
         string apiResponse = await response.Content.ReadAsStringAsync();
         JObject jsonResponse = JObject.Parse(apiResponse);
@@ -26,7 +26,36 @@ public class BackyardsController : Controller
       }
     }
 
-    ViewBag.TotalPages = backyardList.Count();
+    if(backyardList.Count == 0)
+    {
+      int returnPage = page -1;
+      using (var httpClient = new HttpClient())
+      {
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={returnPage}&pageSize={pageSize}"))
+        {
+          string apiResponse = await response.Content.ReadAsStringAsync();
+          JObject jsonResponse = JObject.Parse(apiResponse);
+          JArray backyardArray = (JArray)jsonResponse["data"];
+          backyardList = backyardArray.ToObject<List<Backyard>>();
+        }
+      }
+      ViewBag.IsEnd = 1;
+    }
+
+    List<Backyard> totalBackyards = new List<Backyard> { };
+    using (var httpClient = new HttpClient())
+    {
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={page}"))
+      {
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        JObject jsonResponse = JObject.Parse(apiResponse);
+        JArray backyardArray = (JArray)jsonResponse["data"];
+        totalBackyards = backyardArray.ToObject<List<Backyard>>();
+      }
+    }
+    
+
+    ViewBag.TotalPages = (totalBackyards.Count() / 6);
     ViewBag.CurrentPage = page;
     ViewBag.PageSize = pageSize;
 
@@ -106,7 +135,7 @@ public class BackyardsController : Controller
     List<Backyard> BackyardList = new List<Backyard> { };
     using (var httpClient = new HttpClient())
     {
-      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?PageSize=1001"))
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?pageSize=1001"))
       {
         string apiResponse = await response.Content.ReadAsStringAsync();
         JObject jsonResponse = JObject.Parse(apiResponse);

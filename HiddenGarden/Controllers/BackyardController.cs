@@ -93,6 +93,10 @@ public class BackyardsController : Controller
   [HttpPost]
   public async Task<IActionResult> Create(Backyard backyard)
   {
+    if(!ModelState.IsValid)
+    {
+      return View(backyard);
+    }
     string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
     backyard.UserId = userId;

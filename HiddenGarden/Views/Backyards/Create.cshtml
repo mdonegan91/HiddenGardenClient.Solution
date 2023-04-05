@@ -6,6 +6,8 @@
 
 <h4>Add a new backyard to the community</h4>
 
+<p>@Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
 @using (Html.BeginForm())
 {
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>

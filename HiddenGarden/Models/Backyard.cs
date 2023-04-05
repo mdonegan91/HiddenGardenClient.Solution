@@ -1,11 +1,13 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace HiddenGarden.Models
 {
   public class Backyard
   {
     public int BackyardId { get; set; }
+    [Required(ErrorMessage = "Please enter the type of service you want to offer")]
     public string Service { get; set; }
     public string Description { get; set; }
     public string Address { get; set; }

@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-<h2>Authentication with Identity</h2>
+<h2>Account Information</h2>
 <hr />
 @if (User.Identity.IsAuthenticated)
 {
@@ -16,5 +16,23 @@ else
 {
   <div id="navlinks">
     <p>@Html.ActionLink("Register", "Register") | @Html.ActionLink("Log in", "Login")</p>
+  </div>
+}
+<br>
+
+<hr />
+<h4>My Backyards</h4>
+
+<br>
+@foreach (Backyard backyard in Model)
+{
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">@backyard.Service</h5>
+        <p class="card-text">@backyard.Description</p>
+        <a href="/Backyards/Details/@(backyard.BackyardId)" class="btn btn-primary">Details</a>
+      </div>
+    </div>
   </div>
 }

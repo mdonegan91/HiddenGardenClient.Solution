@@ -108,6 +108,8 @@ public class BackyardsController : Controller
 
   public async Task<IActionResult> Edit(int id)
   {
+    string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
     List<Backyard> BackyardList = new List<Backyard> { };
     using (var httpClient = new HttpClient())
     {
@@ -120,7 +122,15 @@ public class BackyardsController : Controller
       }
     }
     Backyard backyard = BackyardList[0];
-    return View(backyard);
+    if(backyard.UserId != userId)
+    {
+      Error error = new Error { ErrorMessage = "You can only edit or delete your own posts!" };
+      return RedirectToAction( "Error", error );
+    }
+    else
+    {
+      return View(backyard);
+    }
   }
 
   [HttpPost]
@@ -132,9 +142,19 @@ public class BackyardsController : Controller
 
   public ActionResult Delete(int id)
   {
+    string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     Backyard backyard = Backyard.GetDetails(id);
-    return View(backyard);
+    if(backyard.UserId != userId)
+    {
+      Error error = new Error { ErrorMessage = "You can only edit or delete your own posts!" };
+      return RedirectToAction("Error", error);
+    }
+    else
+    {
+      return View(backyard);
+    }
   }
+
 
   [HttpPost, ActionName("Delete")]
   public ActionResult DeleteConfirmed(int id)
@@ -143,6 +163,11 @@ public class BackyardsController : Controller
     return RedirectToAction("Index");
   }
 
+  [HttpGet]
+  public ActionResult Error(Error error)
+  {
+    return View(error);
+  }
 
   [HttpPost, ActionName("Search")]
   public async Task<IActionResult> Search(string name)

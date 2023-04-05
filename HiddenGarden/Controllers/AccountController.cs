@@ -8,7 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
 
 namespace HiddenGarden.Controllers
 {
@@ -26,9 +30,22 @@ namespace HiddenGarden.Controllers
     }
 
     [Authorize]
-    public ActionResult Index()
-    {
-      return View();
+    public async Task<IActionResult> Index()
+    { 
+      List<Backyard> userBackyards = new List<Backyard> { };
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?userId={userId}"))
+        {
+          string apiResponse = await response.Content.ReadAsStringAsync();
+          JObject jsonResponse = JObject.Parse(apiResponse);
+          JArray backyardArray = (JArray)jsonResponse["data"];
+          userBackyards = backyardArray.ToObject<List<Backyard>>();
+        }
+      }
+      return View(userBackyards);
     }
 
     public IActionResult Register()

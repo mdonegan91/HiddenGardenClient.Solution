@@ -1,4 +1,4 @@
-## 🍓 Hidden Gardens 🍓
+## 🍓 The Hidden Garden 🍓
 
 #### By Molly Donegan, Sarah Andyshak, Erin Timlin, David Jandron, Kai Clausen, Asia Kaplanyan
 
@@ -13,9 +13,9 @@
 * HTML
 * CSS
 
-## Description
-
-![](about.png)
+![home page](home.png)
+![about page](about.png)
+![main body of site](backyards.png)
 
 ## How To Run This Project
 

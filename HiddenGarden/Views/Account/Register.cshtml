@@ -28,12 +28,12 @@
 
   <div class="form-group">
     @Html.LabelFor(user=> user.Password, new { @class = "control-label" })
-    @Html.TextBoxFor(user=> user.Password, new { @class = "form-control" })
+    @Html.TextBoxFor(user=> user.Password, new { @class = "form-control", type = "password" })
   </div>
 
   <div class="form-group">
     @Html.LabelFor(user=> user.ConfirmPassword, new { @class = "control-label" })
-    @Html.TextBoxFor(user=> user.ConfirmPassword, new { @class = "form-control" })
+    @Html.TextBoxFor(user=> user.ConfirmPassword, new { @class = "form-control", type = "password" })
   </div>
 
   <br>

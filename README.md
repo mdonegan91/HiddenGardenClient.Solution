@@ -13,7 +13,6 @@
 * HTML
 * CSS
 
-Sample screenshots from the site:
 ![home page](home.png)
 ![about page](about.png)
 ![main body of site](backyards.png)
@@ -44,6 +43,6 @@ First, following the instructions in the README of [this repo](https://github.co
 ## 🍓 License 🍓
 Enjoy the site! If you have questions or suggestions for fixing the code, please contact me!
 
-[MIT](https://github.com/kaisama92/HiddenGardenClient.Solution/blob/main/LICENSE)_
+[MIT](https://github.com/kaisama92/HiddenGardenClient.Solution/blob/main/LICENSE)
 
 Copyright (c) 2023 Molly Donegan, Sarah Andyshak, Erin Timlin, David Jandron, Kai Clausen, Asia Kaplanyan

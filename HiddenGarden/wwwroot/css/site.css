@@ -15,7 +15,8 @@ html {
 
 body {
   margin-bottom: 60px;
-  font-family: 'Montserrat';
+  /* font-family: 'Montserrat'; */
+  font-family: 'Noto Sans Egyptian Hieroglyphs', sans-serif;
 }
 
 .btn-primary {

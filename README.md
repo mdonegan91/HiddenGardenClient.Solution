@@ -13,6 +13,7 @@
 * HTML
 * CSS
 
+Sample screenshots from the site:
 ![home page](home.png)
 ![about page](about.png)
 ![main body of site](backyards.png)

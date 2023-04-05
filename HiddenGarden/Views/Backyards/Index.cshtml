@@ -56,7 +56,7 @@ List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex); *@
   @using (Html.BeginForm("Search", "Backyards")) {
   <label class="mdl-textfield__label" for="sample3">Search Backyards By Description:</label>
   <br>
-  <input class="mdl-textfield__input" type="text" name="name" id="sample3"><br><br>
+  <input class="mdl-textfield__input" type="text" placeholder = "Search" name="name" id="sample3"><br><br>
   <input type="submit" class = "btn btn-primary" name = "name" value="Search"/>
   }
 

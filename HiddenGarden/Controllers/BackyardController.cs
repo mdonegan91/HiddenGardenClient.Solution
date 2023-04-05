@@ -2,14 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using HiddenGarden.Models;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Authorization;
-using System.Diagnostics;
-using System.Collections.Generic;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 
 namespace HiddenGarden.Controllers;
 

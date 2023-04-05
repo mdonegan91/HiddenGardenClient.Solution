@@ -17,6 +17,11 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
   <div class="form-group">
+    @Html.Label("First Name:")
+    @Html.TextBoxFor(user=> user.FirstName, new { @class = "form-control" })
+  </div>
+
+  <div class="form-group">
     @Html.LabelFor(user => user.Email, new { @class = "control-label" })
     @Html.TextBoxFor(user=> user.Email, new { @class = "form-control" })
   </div>

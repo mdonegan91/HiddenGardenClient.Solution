@@ -18,14 +18,16 @@
 {
   <div class="form-group">
     @Html.LabelFor(m => m.Email, new { @class = "control-label" })
-    @Html.TextBoxFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 
     @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-    @Html.EditorFor(m => m.Password)
+    @Html.TextBoxFor(m => m.Password, new { @class="form-control", type = "password" })
   </div>
 
-  <input type="submit" class="btn btn-primary" value="Log in" />
-}
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Log in" />
+  </div
+>}
 <br>
 
 <div id="navlinks">

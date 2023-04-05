@@ -7,7 +7,7 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-a {
+/* a {
   color: #0077cc;
 }
 
@@ -21,7 +21,8 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+  outline-color: #86CD82;
+} */
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -45,8 +46,34 @@ button.accept-policy {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+  background-color: white;
 }
 
-div#navlinks {
-  text-align: center;
+/* .btn-primary {
+  color: #fff;
+  background-color: #72A276;
+  border-color: #72A276;
+  margin: 5px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #86CD82;
+  border-color: #86CD82;
+  margin: 5px;
+} */
+
+ul li:last-child {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 15px;
+  padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 50px;
+    padding: 10px 0px;
+    position: relative;
 }

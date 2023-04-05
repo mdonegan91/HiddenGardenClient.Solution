@@ -6,22 +6,37 @@
 
 <h4>Add a new backyard to the community</h4>
 
+<p>@Html.ValidationMessageFor(model => model.Service, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Service)
-  @Html.TextBoxFor(model => model.Service)
-  <br>
-  @Html.LabelFor(model => model.Description)
-  @Html.TextBoxFor(model => model.Description)
-  <br>
-  @Html.LabelFor(model => model.Address)
-  @Html.TextBoxFor(model => model.Address)
-  <br>
-  @Html.LabelFor(model => model.Instructions)
-  @Html.TextBoxFor(model => model.Instructions)
-  <br>
-  <br>
-  <input type="submit" value="Add new backyard" class="btn btn-primary"/>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Service, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Service, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Instructions, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Instructions, new { @class = "form-control" })
+    </div>
+
+    <br>
+    <br>
+    <div class="form-group">
+        <input type="submit" value="Add new backyard" class="btn btn-primary" />
+    </div>
 }
 
 <br>

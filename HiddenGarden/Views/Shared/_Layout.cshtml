@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
   <link rel="stylesheet" href="~/HiddenGarden.styles.css" asp-append-version="true" />
   <link rel="icon" href="~/fruittree.ico">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
-
 <body>
   <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -26,10 +26,20 @@
               <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" asp-area="" asp-controller="Backyards" asp-action="Index">See Backyards</a>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Backyards" asp-action="Index">Explore Backyards</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Log In</a>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Account</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+            </li>
+            <li class="nav-item-search">
+              @using (Html.BeginForm("Search", "Backyards")) {
+                
+                <input class="mdl-textfield__input" type="text" name="name" id="sample3" placeholder="Search">
+                <input type="submit" class = "btn btn-primary" name = "name" value="Search"/>
+                }
             </li>
           </ul>
         </div>

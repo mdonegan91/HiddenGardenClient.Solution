@@ -2,12 +2,15 @@
   ViewData["Title"] = $"Details for {Model.Service}";
 }
 
-<h1>All About @Model.Service</h1>
-
-<p>Description: @Model.Description</p>
-<p>Location: @Model.Address</p>
+<br>
+<h2>Backyard Details</h2>
+<br>
+<h4>@Model.Service</h4>
+<br>
+<h5>Description: @Model.Description</h5>
+<p>Location: <a href="https://www.google.com/maps/search/?api=1&query=@Model.Address" target="_blank">@Model.Address</a></p>
 <p>Instructions: @Model.Instructions</p>
-
+<br>
 <div id="navlinks">
 <p>@Html.ActionLink("Edit details", "Edit", new { id = @Model.BackyardId }) | @Html.ActionLink("Delete backyard", "Delete", new { id = @Model.BackyardId }) | @Html.ActionLink("Return to all backyards", "Index")</p>
 </div>

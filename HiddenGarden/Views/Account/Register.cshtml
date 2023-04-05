@@ -16,16 +16,31 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-  @Html.LabelFor(user => user.Email)
-  @Html.TextBoxFor(user=> user.Email)
+  <div class="form-group">
+    @Html.Label("First Name:")
+    @Html.TextBoxFor(user=> user.FirstName, new { @class = "form-control" })
+  </div>
 
-  @Html.LabelFor(user=> user.Password)
-  @Html.EditorFor(user=> user.Password)
+  <div class="form-group">
+    @Html.LabelFor(user => user.Email, new { @class = "control-label" })
+    @Html.TextBoxFor(user=> user.Email, new { @class = "form-control" })
+  </div>
 
-  @Html.LabelFor(user=> user.ConfirmPassword)
-  @Html.EditorFor(user=> user.ConfirmPassword)
+  <div class="form-group">
+    @Html.LabelFor(user=> user.Password, new { @class = "control-label" })
+    @Html.TextBoxFor(user=> user.Password, new { @class = "form-control", type = "password" })
+  </div>
 
-  <input type="submit" value="Register" />
+  <div class="form-group">
+    @Html.LabelFor(user=> user.ConfirmPassword, new { @class = "control-label" })
+    @Html.TextBoxFor(user=> user.ConfirmPassword, new { @class = "form-control", type = "password" })
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <input type="submit" value="Register" class="btn btn-primary" />
+  </div>
 }
 <br>
 

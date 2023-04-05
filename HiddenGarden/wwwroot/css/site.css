@@ -15,4 +15,91 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: 'Montserrat';
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #72A276;
+  border-color: #72A276;
+  margin: 5px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #86CD82;
+  border-color: #86CD82;
+  margin: 5px;
+}
+
+.btn-primary:active {
+  color: #fff;
+  background-color: #86CD82;
+  border-color: #86CD82;
+
+  margin: 5px;
+}
+
+.primary-btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+a:hover {
+  color: #86CD82;
+}
+
+div#navlinks {
+  text-align: left;
+}
+
+a {
+  color: #72A276;
+  text-decoration: none;
+	position: relative;
+	display: inline-block;
+  color: #72A276;
+  font-weight:lighter;
+  font-size:larger;
+}
+
+a::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background-color: #27272e;
+	border-radius: 4px;
+	scale: 0 1;
+	transform-origin: right;
+	transition: scale 0.25s;
+}
+
+a:hover::before {
+	scale: 1;
+	transform-origin: left;
+}
+
+.text-center img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
+  }
+
+input[type="text"], textarea {
+  outline: none;
+  box-shadow:none !important;
+  border:1px solid #ccc !important;
+  }  
+
+input[type="password"], textarea {
+  outline: none;
+  box-shadow:none !important;
+  border:1px solid #ccc !important;
+  }    

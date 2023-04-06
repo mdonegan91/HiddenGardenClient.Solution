@@ -18,7 +18,6 @@ public class BackyardsController : Controller
     _db = db;
   }
 
-  // private readonly ILogger<HomeController> _logger;
   public async Task<IActionResult> Index( int page = 1, int pageSize = 6)
   {
     Backyard backyard = new Backyard();
@@ -34,26 +33,10 @@ public class BackyardsController : Controller
       }
     }
 
-    if(backyardList.Count == 0)
-    {
-      int returnPage = page -1;
-      using (var httpClient = new HttpClient())
-      {
-      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={returnPage}&pageSize={pageSize}"))
-        {
-          string apiResponse = await response.Content.ReadAsStringAsync();
-          JObject jsonResponse = JObject.Parse(apiResponse);
-          JArray backyardArray = (JArray)jsonResponse["data"];
-          backyardList = backyardArray.ToObject<List<Backyard>>();
-        }
-      }
-      ViewBag.IsEnd = 1;
-    }
-
     List<Backyard> totalBackyards = new List<Backyard> { };
     using (var httpClient = new HttpClient())
     {
-      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={page}"))
+      using (var response = await httpClient.GetAsync($"https://localhost:7225/api/Backyards?page={1}&pageSize=1001"))
       {
         string apiResponse = await response.Content.ReadAsStringAsync();
         JObject jsonResponse = JObject.Parse(apiResponse);
@@ -61,6 +44,7 @@ public class BackyardsController : Controller
         totalBackyards = backyardArray.ToObject<List<Backyard>>();
       }
     }
+    ViewBag.Remainder = totalBackyards.Count() % 6;
     ViewBag.TotalPages = (totalBackyards.Count() / 6);
     ViewBag.CurrentPage = page;
     ViewBag.PageSize = pageSize;

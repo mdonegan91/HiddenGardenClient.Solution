@@ -38,7 +38,7 @@ First, following the instructions in the README of [this repo](https://github.co
 
 ## 🫐 Known Bugs 🫐
 
-* No known bugs.
+* As of 6 April 2023, no known bugs!
 
 ## 🍓 License 🍓
 Enjoy the site! If you have questions or suggestions for fixing the code, please contact me!

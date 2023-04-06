@@ -38,7 +38,13 @@ List<Backyard> backyards = Model.GetRange(startIndex, endIndex - startIndex); *@
             <button class="btn btn-primary">Prev</button>
         </a>
   }
-  @if(Model.Count == 6 && ViewBag.IsEnd != 1)
+  @if(ViewBag.CurrentPage < ViewBag.TotalPages)
+  {
+    <a href='/Backyards?page=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize'>
+            <button class="btn btn-primary">Next</button>
+        </a>
+  }
+  @if(ViewBag.CurrentPage == ViewBag.TotalPages && ViewBag.Remainder != 0)
   {
     <a href='/Backyards?page=@(ViewBag.CurrentPage + 1)&pageSize=@ViewBag.PageSize'>
             <button class="btn btn-primary">Next</button>

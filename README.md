@@ -7,8 +7,7 @@
 ## 🍐 Technologies Used 🍐 
 
 * C#
-* .NET
-* ASP.Net
+* ASP.NET
 * Entity Framework
 * HTML
 * CSS
